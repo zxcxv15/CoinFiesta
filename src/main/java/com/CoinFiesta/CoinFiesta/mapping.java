@@ -5,10 +5,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class mapping {
-	/*
-	@GetMapping("/index")
+	
+	@GetMapping("/")
 	public String getMethod() {
-		return "method/test2";
+		return "index";
 	}
-	*/
+	
 }
