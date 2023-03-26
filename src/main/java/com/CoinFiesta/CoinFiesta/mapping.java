@@ -11,4 +11,10 @@ public class mapping {
 		return "index";
 	}
 	
+	
+	@GetMapping("/hoga")
+	public String hoga() {
+		return "hoga";
+	}
+	
 }
