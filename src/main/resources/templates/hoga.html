@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<title>호가창</title>
+</head>
+<body>
+	<script>
+		setInterval(function() {
+			// 1초마다 실행될 함수
+			$.ajax({
+				type : "GET",
+				url : "https://api.bithumb.com/public/orderbook/BTC_KRW",
+				success : function(data) {
+					console.log(data);
+
+			
+					
+					document.getElementById("medo0_price").innerHTML = data.data.asks[0].price + " 원";
+					document.getElementById("medo0_count").innerHTML = data.data.asks[0].quantity + " BTC";
+					document.getElementById("mesu0_price").innerHTML = data.data.bids[0].price + " 원";
+					document.getElementById("mesu0_count").innerHTML = data.data.bids[0].quantity + " BTC";
+
+				},
+				error : function(xhr, status, error) {
+					// AJAX 요청이 실패하면 이 함수가 실행됩니다.
+					console.log("에러 발생:", error);
+				}
+			});
+
+		}, 300); // 1000ms = 1s
+	</script>
+	<div>
+		<table border="1" style="text-align: center;" id="table_hoga">
+			<tr>
+				<th>가격</th>
+				<th>수량</th>
+			</tr>
+			<tr>
+				<td id="medo0_price"></td>
+				<td id="medo0_count"></td>
+			</tr>
+
+			<tr>
+				<td id="mesu0_price"></td>
+				<td id="mesu0_count"></td>
+
+			</tr>
+
+
+
+		</table>
+		<p id="hoga_length"></p>
+
+	</div>
+</body>
+</html>
