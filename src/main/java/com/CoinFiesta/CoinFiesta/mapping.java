@@ -8,13 +8,13 @@ public class mapping {
 	
 	@GetMapping("/")
 	public String getMethod() {
-		return "index";
+		return "index.html";
 	}
 	
 	
 	@GetMapping("/hoga")
 	public String hoga() {
-		return "hoga";
+		return "hoga.html";
 	}
 	
 }
