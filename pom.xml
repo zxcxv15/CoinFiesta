@@ -48,8 +48,6 @@
 		    <artifactId>mybatis-spring-boot-starter</artifactId>
 		    <version>3.0.1</version>
 		</dependency>
-
-      	
       	<!-- mysql-connector-java -->
 		<dependency>
 		    <groupId>mysql</groupId>
