@@ -1,4 +1,4 @@
-package com.CoinFiesta.CoinFiesta.web.controller.board;
+package com.CoinFiesta.CoinFiesta.web.controller.board.api;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.CoinFiesta.CoinFiesta.service.Board.BoardService;
 import com.CoinFiesta.CoinFiesta.web.dto.CMRespDto;
 import com.CoinFiesta.CoinFiesta.web.dto.Board.CreateBoardReqDto;
+import com.CoinFiesta.CoinFiesta.web.dto.Board.ReadBoardRespDto;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,17 +30,28 @@ public class BoardRestController {
 		log.info("data: {}", createboardReqDto);
 		 boolean status = false;
 		try {
-			status = boardService.writeBoard(createboardReqDto); // controller -> service(writeBoard에 boardReqDto를)로 넘겨준다.
+			status = boardService.createBoard(createboardReqDto); // controller -> service(writeBoard에 boardReqDto를)로 넘겨준다.
 		} catch (Exception e) {									// boolean 값이 들어와서 비교 한다.
 			e.printStackTrace();
-			return ResponseEntity.internalServerError().body(new CMRespDto<>(1, "게시글 등록 실패", status));
+			return ResponseEntity.internalServerError().body(new CMRespDto<>(1, "create board failed", status));
 		}
-		return ResponseEntity.ok().body(new CMRespDto<>(1, "게시글 등록 성공", status));
+		return ResponseEntity.ok().body(new CMRespDto<>(1, "create board successful", status));
 	}
 	
-	//게시글 조회
-	@GetMapping("/content/{boardcode}")
-	ResponseEntity<?> getBoard(@PathVariable int boardcode){
-		return ResponseEntity.ok().body(new CMRespDto<>(1, "게시글 조회 성공", null));
+	
+	@GetMapping("/detail/{boardcode}")
+	public ResponseEntity<?> getBoard(@PathVariable int boardcode) {
+		ReadBoardRespDto readBoardRespDto = null;
+		try {
+			readBoardRespDto = boardService.readBoard(boardcode);
+			if(readBoardRespDto == null) {
+				return ResponseEntity.badRequest().body(new CMRespDto<>(-1, "request failed", null));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+				return ResponseEntity.internalServerError().body(new CMRespDto<>(-1, "database error", null));
+		}
+		return ResponseEntity.ok().body(new CMRespDto<>(1, "lookup successful", readBoardRespDto));
 	}
+	
 }

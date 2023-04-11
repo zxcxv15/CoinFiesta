@@ -5,13 +5,27 @@
   
 <mapper namespace="com.CoinFiesta.CoinFiesta.domain.Board.BoardRepository">
 	<insert id="save" parameterType="com.CoinFiesta.CoinFiesta.domain.Board.Board"
-		useGeneratedKeys="true" keyProperty="boardcode">
+		useGeneratedKeys="true" keyProperty="board_code">
 		insert into 
 			board_mst
 		values(
 			0,
 			#{title},
-			#{content}
+			#{content},
+			now()
 		);
 	</insert>
+	
+	<select id="findBoardByBoardcode" parameterType="Integer" resultType="com.CoinFiesta.CoinFiesta.domain.Board.Board">
+		select
+			board_code,
+			title,
+			content,
+			create_date
+		from
+			board_mst 
+		where
+			board_code = #{board_code}
+	
+	</select>
 </mapper>
