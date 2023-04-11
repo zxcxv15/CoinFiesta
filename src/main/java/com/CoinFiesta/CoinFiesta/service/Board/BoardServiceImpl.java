@@ -1,5 +1,10 @@
 package com.CoinFiesta.CoinFiesta.service.Board;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.stereotype.Service;
 
 import com.CoinFiesta.CoinFiesta.domain.Board.Board;
@@ -8,6 +13,7 @@ import com.CoinFiesta.CoinFiesta.web.dto.Board.CreateBoardReqDto;
 import com.CoinFiesta.CoinFiesta.web.dto.Board.ReadBoardRespDto;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor
@@ -35,6 +41,24 @@ public class BoardServiceImpl implements BoardService {
 		}
 		
 		return readBoardRespDto;
+	}
+
+
+	@Override
+	public List<ReadBoardRespDto> readBoardList(int page) throws Exception {
+		int index = (page - 1) * 10;
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("index", index);
+		
+		List<ReadBoardRespDto> boardlist = new ArrayList<ReadBoardRespDto>();
+		
+		
+		boardRepository.readBoardList(map).forEach(board -> {
+			
+			boardlist.add(board.toReadBoardDto());
+		});;
+		return boardlist;
 	}
 
 

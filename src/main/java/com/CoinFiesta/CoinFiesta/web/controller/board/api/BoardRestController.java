@@ -1,5 +1,7 @@
 package com.CoinFiesta.CoinFiesta.web.controller.board.api;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,7 +40,22 @@ public class BoardRestController {
 		return ResponseEntity.ok().body(new CMRespDto<>(1, "create board successful", status));
 	}
 	
+	//게시글 목록 조회
+	@GetMapping("/list/{page}")
+	public ResponseEntity<?> getBoardList(@PathVariable int page){
+		List<ReadBoardRespDto> listDto = null;
+		
+		try {
+			listDto = boardService.readBoardList(page);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseEntity.internalServerError().body(new CMRespDto<>(-1,"database error",listDto));	
+		}
+		return ResponseEntity.ok(new CMRespDto<>(1,"lookup successful", listDto));
+	}
 	
+	
+	//게시글 상세페이지 조회
 	@GetMapping("/detail/{boardcode}")
 	public ResponseEntity<?> getBoard(@PathVariable int boardcode) {
 		ReadBoardRespDto readBoardRespDto = null;

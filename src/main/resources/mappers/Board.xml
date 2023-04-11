@@ -28,4 +28,16 @@
 			board_code = #{board_code}
 	
 	</select>
+	
+	<select id="readBoardList" parameterType="hashmap" resultType="com.CoinFiesta.CoinFiesta.domain.Board.Board">
+  				SELECT
+					board_code,
+					title,
+					create_date
+				FROM
+					board_mst 
+			order by
+				board_code asc
+			limit #{index}, 10;		
+  		</select>
 </mapper>

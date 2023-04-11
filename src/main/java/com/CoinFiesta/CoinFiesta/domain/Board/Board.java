@@ -2,6 +2,7 @@ package com.CoinFiesta.CoinFiesta.domain.Board;
 
 import java.time.LocalDateTime;
 
+import com.CoinFiesta.CoinFiesta.web.dto.Board.ReadBoardListRespDto;
 import com.CoinFiesta.CoinFiesta.web.dto.Board.ReadBoardRespDto;
 
 import lombok.AllArgsConstructor;
@@ -24,6 +25,14 @@ public class Board {
 				.boardcode(board_code)
 				.title(title)
 				.content(content)
+				.createdate(create_date)
+				.build();
+	}
+	
+	public ReadBoardListRespDto toBoardListDto() {
+		return ReadBoardListRespDto.builder()
+				.boardcode(board_code)
+				.title(title)
 				.createdate(create_date)
 				.build();
 	}
