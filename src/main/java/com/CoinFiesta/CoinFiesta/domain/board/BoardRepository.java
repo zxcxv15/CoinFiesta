@@ -15,4 +15,5 @@ public interface  BoardRepository {
 	
 	public List<Board> readBoardList(Map<String, Object> map) throws Exception;
 	
+	
 }

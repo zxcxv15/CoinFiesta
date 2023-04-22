@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import com.CoinFiesta.CoinFiesta.domain.user.UserRepository;
 import com.CoinFiesta.CoinFiesta.web.dto.auth.SignupReqDto;
+import com.CoinFiesta.CoinFiesta.web.dto.auth.ValidationReqDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -17,6 +18,18 @@ public class AuthServiceImpl implements AuthService {
 	public boolean signup(SignupReqDto signupReqDto) throws Exception {
 		
 		return userRepository.save(signupReqDto.toEntity()) > 0;
+	}
+
+	@Override
+	public boolean checkUserid(ValidationReqDto validationReqDto) throws Exception {
+		// TODO Auto-generated method stub
+		return userRepository.findUserByUserid(validationReqDto.getUserid()) == null;
+	}
+
+	@Override
+	public boolean checkUseremail(ValidationReqDto validationReqDto) throws Exception {
+		// TODO Auto-generated method stub
+		return userRepository.findUserByUserid(validationReqDto.getUseremail()) == null;
 	}
 
 

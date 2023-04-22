@@ -66,7 +66,7 @@ public class BoardRestController {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-				return ResponseEntity.internalServerError().body(new CMRespDto<>(-1, "database error", null));
+				return ResponseEntity.internalServerError().body(new CMRespDto<>(-1, "Server error", null));
 		}
 		return ResponseEntity.ok().body(new CMRespDto<>(1, "lookup successful", readBoardRespDto));
 	}
