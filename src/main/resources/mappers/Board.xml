@@ -3,8 +3,8 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="com.CoinFiesta.CoinFiesta.domain.Board.BoardRepository">
-	<insert id="save" parameterType="com.CoinFiesta.CoinFiesta.domain.Board.Board"
+<mapper namespace="com.CoinFiesta.CoinFiesta.domain.board.BoardRepository">
+	<insert id="save" parameterType="com.CoinFiesta.CoinFiesta.domain.board.Board"
 		useGeneratedKeys="true" keyProperty="board_code">
 		insert into 
 			board_mst
@@ -16,7 +16,7 @@
 		);
 	</insert>
 	
-	<select id="findBoardByBoardcode" parameterType="Integer" resultType="com.CoinFiesta.CoinFiesta.domain.Board.Board">
+	<select id="findBoardByBoardcode" parameterType="Integer" resultType="com.CoinFiesta.CoinFiesta.domain.board.Board">
 		select
 			board_code,
 			title,
@@ -29,7 +29,7 @@
 	
 	</select>
 	
-	<select id="readBoardList" parameterType="hashmap" resultType="com.CoinFiesta.CoinFiesta.domain.Board.Board">
+	<select id="readBoardList" parameterType="hashmap" resultType="com.CoinFiesta.CoinFiesta.domain.board.Board">
   				SELECT
 					board_code,
 					title,
@@ -38,6 +38,6 @@
 					board_mst 
 			order by
 				board_code asc
-			limit #{index}, 10;		
+			limit #{index}, 5;		
   		</select>
 </mapper>

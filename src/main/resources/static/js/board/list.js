@@ -12,10 +12,10 @@ function getBoardData () {
 		dataType: "json",
 		success: (response) => {
 			if(response.data[0] != null) {
-				getBoardlist(response.data);
+				getBoardList(response.data);
 				
 			}else{
-				getBoardlist(list);
+				getBoardList(list);
 			}
 		},
 		error: (error) => {
@@ -24,12 +24,12 @@ function getBoardData () {
 	});
 }
 
-function getBoardlist(list) {
+function getBoardList(boardList) {
 	const tbody = document.querySelector("tbody");
 	
 		tbody.innerHTML = "";
 	
-		list.forEach(board => {
+		boardList.forEach(board => {
 			tbody.innerHTML += `
 	 			<tbody>
 	                <tr>
@@ -40,7 +40,7 @@ function getBoardlist(list) {
 	            </tbody>
 			`;			
 		});
-		setBoardClickEvent(list);
+		setBoardClickEvent(boardList);
 	}
 	
 

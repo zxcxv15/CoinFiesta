@@ -1,4 +1,4 @@
-package com.CoinFiesta.CoinFiesta.web.controller.board.api;
+package com.CoinFiesta.CoinFiesta.web.controller.api.board;
 
 import java.util.List;
 
@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.CoinFiesta.CoinFiesta.service.Board.BoardService;
+import com.CoinFiesta.CoinFiesta.service.board.BoardService;
 import com.CoinFiesta.CoinFiesta.web.dto.CMRespDto;
-import com.CoinFiesta.CoinFiesta.web.dto.Board.CreateBoardReqDto;
-import com.CoinFiesta.CoinFiesta.web.dto.Board.ReadBoardRespDto;
+import com.CoinFiesta.CoinFiesta.web.dto.board.CreateBoardReqDto;
+import com.CoinFiesta.CoinFiesta.web.dto.board.ReadBoardRespDto;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

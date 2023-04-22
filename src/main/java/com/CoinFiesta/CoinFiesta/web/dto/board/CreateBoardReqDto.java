@@ -1,6 +1,6 @@
-package com.CoinFiesta.CoinFiesta.web.dto.Board;
+package com.CoinFiesta.CoinFiesta.web.dto.board;
 
-import com.CoinFiesta.CoinFiesta.domain.Board.Board;
+import com.CoinFiesta.CoinFiesta.domain.board.Board;
 
 import lombok.Data;
 

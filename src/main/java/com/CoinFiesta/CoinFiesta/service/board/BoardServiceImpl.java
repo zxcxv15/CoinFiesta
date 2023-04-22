@@ -1,4 +1,4 @@
-package com.CoinFiesta.CoinFiesta.service.Board;
+package com.CoinFiesta.CoinFiesta.service.board;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,13 +7,12 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-import com.CoinFiesta.CoinFiesta.domain.Board.Board;
-import com.CoinFiesta.CoinFiesta.domain.Board.BoardRepository;
-import com.CoinFiesta.CoinFiesta.web.dto.Board.CreateBoardReqDto;
-import com.CoinFiesta.CoinFiesta.web.dto.Board.ReadBoardRespDto;
+import com.CoinFiesta.CoinFiesta.domain.board.Board;
+import com.CoinFiesta.CoinFiesta.domain.board.BoardRepository;
+import com.CoinFiesta.CoinFiesta.web.dto.board.CreateBoardReqDto;
+import com.CoinFiesta.CoinFiesta.web.dto.board.ReadBoardRespDto;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor
@@ -28,7 +27,7 @@ public class BoardServiceImpl implements BoardService {
 		// 1건이 조회 된다면, 0보다 크기 떄문에 true가 나온다.
 	}
 
-
+	//게시글 상세 조회
 	@Override
 	public ReadBoardRespDto readBoard(int boardcode) throws Exception {
 		Board boardEntity = null;
@@ -43,7 +42,7 @@ public class BoardServiceImpl implements BoardService {
 		return readBoardRespDto;
 	}
 
-
+	//게시글 리스트 조회
 	@Override
 	public List<ReadBoardRespDto> readBoardList(int page) throws Exception {
 		int index = (page - 1) * 10;
@@ -60,10 +59,5 @@ public class BoardServiceImpl implements BoardService {
 		});;
 		return boardlist;
 	}
-
-
-
-
-
 
 }

@@ -1,9 +1,9 @@
-package com.CoinFiesta.CoinFiesta.domain.Board;
+package com.CoinFiesta.CoinFiesta.domain.board;
 
 import java.time.LocalDateTime;
 
-import com.CoinFiesta.CoinFiesta.web.dto.Board.ReadBoardListRespDto;
-import com.CoinFiesta.CoinFiesta.web.dto.Board.ReadBoardRespDto;
+import com.CoinFiesta.CoinFiesta.web.dto.board.ReadBoardListRespDto;
+import com.CoinFiesta.CoinFiesta.web.dto.board.ReadBoardRespDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

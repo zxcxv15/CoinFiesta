@@ -1,4 +1,4 @@
-package com.CoinFiesta.CoinFiesta.web.dto.Board;
+package com.CoinFiesta.CoinFiesta.web.dto.board;
 
 import java.time.LocalDateTime;
 

@@ -1,9 +1,9 @@
-package com.CoinFiesta.CoinFiesta.service.Board;
+package com.CoinFiesta.CoinFiesta.service.board;
 
 import java.util.List;
 
-import com.CoinFiesta.CoinFiesta.web.dto.Board.CreateBoardReqDto;
-import com.CoinFiesta.CoinFiesta.web.dto.Board.ReadBoardRespDto;
+import com.CoinFiesta.CoinFiesta.web.dto.board.CreateBoardReqDto;
+import com.CoinFiesta.CoinFiesta.web.dto.board.ReadBoardRespDto;
 
 public interface BoardService {
 

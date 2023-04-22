@@ -16,7 +16,9 @@ btnPrimary.onclick = () => {
       dataType: "json",
       success: (response) => {
          if(response.data){
-         alert("게시판 작성 완료.");          
+         alert("게시판 작성 완료.");  
+         location.replace("/board/list");
+       
          }
       },
       error:(error) => {

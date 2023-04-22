@@ -1,4 +1,4 @@
-package com.CoinFiesta.CoinFiesta.domain.Board;
+package com.CoinFiesta.CoinFiesta.domain.board;
 
 import java.util.List;
 import java.util.Map;
