@@ -10,8 +10,7 @@ public interface AuthService {
 	
 	public boolean checkUserid(ValidationReqDto validationReqDto) throws Exception;
 	
-	public boolean checkUseremail(ValidationReqDto validationReqDto) throws Exception;
-	
+	public boolean checkUseremail(ValidationReqDto validationReqDto) throws Exception;	
 	
 	
 	

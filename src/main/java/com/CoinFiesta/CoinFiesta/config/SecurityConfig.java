@@ -29,9 +29,11 @@ public class SecurityConfig {
 			.permitAll()											// 모든 접근 권한을 준다.
 			.and()													// 그리고
 			.formLogin()											// form 로그인을 한다.
+			.usernameParameter("userid")
 			.loginPage("/auth/signin")								// 로그인 페이지 해당 get요청을 통해 접근한다.
-			.loginProcessingUrl("/auth/signin") 					// 로그인 요청(post)
+
 			.failureHandler(new AuthFailureHandler())
+			
 			.defaultSuccessUrl("/");
 		
 		return http.build();

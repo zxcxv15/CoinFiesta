@@ -11,7 +11,7 @@ public interface UserRepository {
 	public User findUserByUserid(String userid) throws Exception;
 	
 	public User findUserByUseremail(String useremail) throws Exception;
-	
-	/** 로그인 관련 */
+
 	public User findUserByUsername(String username) throws Exception;
+
 }

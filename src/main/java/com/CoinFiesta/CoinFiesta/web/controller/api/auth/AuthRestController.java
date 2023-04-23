@@ -1,11 +1,6 @@
 package com.CoinFiesta.CoinFiesta.web.controller.api.auth;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -47,16 +42,8 @@ public class AuthRestController {
 	
 	//아이디 체크
 	@GetMapping("/signup/validation/userid")
-	public ResponseEntity<?> checkUserid(@Validated ValidationReqDto validationReqDto, BindingResult bindingResult){
-		
-		if(bindingResult.hasErrors()) {
-			Map<String, String> errorMessage = new HashMap<String, String>();
-			
-			bindingResult.getFieldErrors().forEach(error -> {
-				errorMessage.put(error.getField(), error.getDefaultMessage());
-			});
-			return ResponseEntity.badRequest().body(new CMRespDto<>(-1, "Validation check failed", errorMessage));
-		}
+	public ResponseEntity<?> checkUserid(ValidationReqDto validationReqDto){
+
 		boolean status = false;
 		
 		try {
@@ -69,18 +56,10 @@ public class AuthRestController {
 		return ResponseEntity.ok(new CMRespDto<>(1, "signup registration availability", status));
 	}
 	
-	//아이디 체크
+	//이메일체크
 		@GetMapping("/signup/validation/useremail")
-		public ResponseEntity<?> checkUseremail(@Validated ValidationReqDto validationReqDto, BindingResult bindingResult){
-			
-			if(bindingResult.hasErrors()) {
-				Map<String, String> errorMessage = new HashMap<String, String>();
-				
-				bindingResult.getFieldErrors().forEach(error -> {
-					errorMessage.put(error.getField(), error.getDefaultMessage());
-				});
-				return ResponseEntity.badRequest().body(new CMRespDto<>(-1, "Validation check failed", errorMessage));
-			}
+		public ResponseEntity<?> checkUseremail(ValidationReqDto validationReqDto){
+
 			boolean status = false;
 			
 			try {

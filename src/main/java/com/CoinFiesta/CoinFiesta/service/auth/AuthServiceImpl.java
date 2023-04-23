@@ -22,14 +22,14 @@ public class AuthServiceImpl implements AuthService {
 
 	@Override
 	public boolean checkUserid(ValidationReqDto validationReqDto) throws Exception {
-		// TODO Auto-generated method stub
+		
 		return userRepository.findUserByUserid(validationReqDto.getUserid()) == null;
 	}
 
 	@Override
 	public boolean checkUseremail(ValidationReqDto validationReqDto) throws Exception {
-		// TODO Auto-generated method stub
-		return userRepository.findUserByUserid(validationReqDto.getUseremail()) == null;
+		
+		return userRepository.findUserByUseremail(validationReqDto.getUseremail()) == null;
 	}
 
 

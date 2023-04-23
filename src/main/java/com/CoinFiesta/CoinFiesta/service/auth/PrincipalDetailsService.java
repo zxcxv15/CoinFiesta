@@ -17,18 +17,19 @@ public class PrincipalDetailsService implements UserDetailsService{
 	private final UserRepository userRepository;
 	
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String userid) throws UsernameNotFoundException {
 		User userEntity = null;
 		
+		System.out.println(userid);
 		try {
-			userEntity = userRepository.findUserByUsername(username);
+			userEntity = userRepository.findUserByUserid(userid);
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new UsernameNotFoundException(username);
+			throw new UsernameNotFoundException(userid);
 		}
 		
 		if(userEntity == null) {
-			throw new UsernameNotFoundException(username + "사용자 이름은 사용할 수 없습니다.");
+			throw new UsernameNotFoundException(userid + "사용자 아이디는 사용할 수 없습니다.");
 		}
 		return new PrincipalDetails(userEntity);
 	}
