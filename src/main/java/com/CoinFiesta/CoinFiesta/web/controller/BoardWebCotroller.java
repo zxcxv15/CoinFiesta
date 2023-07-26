@@ -6,23 +6,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/board")
-public class BoardPageCotroller {
+public class BoardWebCotroller {
 	
 	@GetMapping("/write")
 	public String boardWrite() {
 		
-		return "board/write.html";
+		return "board/board_write.html";
 	}
 	
 	@GetMapping("/list")
 	public String boardList() {
 		
-		return "board/list.html";
+		return "board/board_list.html";
 	}
 	
 	@GetMapping("/detail/{boardcode}")
 	public String boardDtail() {
 		
-		return "board/detail.html";
+		return "board/board_detail.html";
+	}
+	
+	@GetMapping("/update/{boardcode}")
+	public String boardUpdate() {
+		
+		return "board/board_update.html";
 	}
 }

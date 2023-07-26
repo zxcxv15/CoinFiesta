@@ -12,32 +12,81 @@
 			0,
 			#{title},
 			#{content},
+			#{user_code},
+			now(),
 			now()
 		);
 	</insert>
 	
 	<select id="findBoardByBoardcode" parameterType="Integer" resultType="com.CoinFiesta.CoinFiesta.domain.board.Board">
-		select
-			board_code,
-			title,
-			content,
-			create_date
-		from
-			board_mst 
+		SELECT
+			bm.board_code,
+			bm.title,
+			bm.content,
+			um.user_name,
+			bm.create_date,
+			bm.update_date,
+			bm.user_code
+			
+		FROM
+			board_mst bm
+		LEFT OUTER JOIN user_mst um on(um.user_code = bm.user_code)
 		where
 			board_code = #{board_code}
 	
 	</select>
 	
 	<select id="readBoardList" parameterType="hashmap" resultType="com.CoinFiesta.CoinFiesta.domain.board.Board">
-  				SELECT
-					board_code,
-					title,
-					create_date
-				FROM
-					board_mst 
-			order by
-				board_code asc
-			limit #{index}, 5;		
-  		</select>
+		SELECT
+			bm.board_code,
+			bm.title,
+			bm.content,
+			um.user_name,
+			bm.create_date,
+			bm.update_date
+			
+			FROM
+				board_mst bm
+			LEFT OUTER JOIN user_mst um on(um.user_code = bm.user_code)
+		order by
+			board_code asc
+		limit #{index}, 5;		
+	</select>
+	
+	<update id="updateBoardByBoardCode" parameterType="com.CoinFiesta.CoinFiesta.domain.board.Board">
+		update
+			board_mst
+		set
+			title = #{title},
+			content = #{content},
+			update_date = now()
+		where
+			board_code = #{board_code}
+	</update>
+	
+	
+	<delete id="deleteBoard" parameterType="Integer">
+		delete
+			from
+				board_mst
+			where
+				board_code = #{board_code}
+	</delete>
+	
+	<!-- 댓글 -->
+	
+	<insert id="insertComment" parameterType="com.CoinFiesta.CoinFiesta.domain.board.Comment">
+		insert into 
+			comment_mst
+		values(
+			0,
+			#{board_code},
+			#{user_code},
+			#{content},
+			0,
+			0,
+			now(),
+			now()
+		);
+	</insert>
 </mapper>

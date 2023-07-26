@@ -4,69 +4,76 @@ const signUpBtn = document.querySelector(".btn");
 //회원가입 아이디 중복체크
 let checkUseridFlag = false;
 
-//회원가입 이메일 중복체크
+//회원가입  중복체크
 let checkUseremailFlag = false;
 
 inputs[0].onblur = () => {
-
-	$.ajax({
-		async: false,
-		type: "get",
-		url: "/api/v1/auth/signup/validation/userid?userid = value",
-		data: {
-			userid: inputs[0].value
-		}
-		,
-		dataType: "json",
-		success: (response) => {
-			checkUseridFlag = response.data;
-
-			if (checkUseridFlag) {
-				alert("사용 가능한 아이디 입니다.");
-			} else {
-				alert("이미 사용중인 아이디 입니다.");
+	if(inputs[0].value != ""){
+			$.ajax({
+			async: false,
+			type: "get",
+			url: "/api/v1/auth/signup/validation/userid?userid = value",
+			data: {
+				userid: inputs[0].value
 			}
-		},
-		error: (error) => {
-			if (error.status == 400) {
-				alert(JSON.stringify(error.responseJSON.data));
-			} else {
-				console.log("요청실패");
-				console.log(error);
+			,
+			dataType: "json",
+			success: (response) => {
+				checkUseridFlag = response.data;
+	
+				if (checkUseridFlag) {
+					alert("사용 가능한 아이디 입니다.");
+				} else {
+					alert("이미 사용중인 아이디 입니다.");
+				}
+			},
+			error: (error) => {
+				if (error.status == 400) {
+					alert(JSON.stringify(error.responseJSON.data));
+				} else {
+					console.log("요청실패");
+					console.log(error);
+				}
 			}
-		}
-	});
+		});
+	}else{
+		alert("아이디는 공백일수 없습니다.")
+	}
 }
 
 inputs[3].onblur = () => {
-	$.ajax({
-		async: false,
-		type: "get",
-		url: "/api/v1/auth/signup/validation/useremail?useremail = value",
-		contentType: "application/json",
-		data: {
-			useremail: inputs[3].value
-		}
-		,
-		dataType: "json",
-		success: (respones) => {
-			checkUseremailFlag = respones.data;
-
-			if (checkUseremailFlag) {
-				alert("사용 가능한 이메일 입니다.");
-			} else {
-				alert("이미 사용중인 이메일 입니다.");
+	if(inputs[3].value != ""){
+		$.ajax({
+			async: false,
+			type: "get",
+			url: "/api/v1/auth/signup/validation/useremail?useremail = value",
+			contentType: "application/json",
+			data: {
+				useremail: inputs[3].value
 			}
-		},
-		error: (error) => {
-			if (error.status == 400) {
-				alert(JSON.stringify(error.responseJSON.data));
-			} else {
-				console.log("요청실패");
-				console.log(error);
+			,
+			dataType: "json",
+			success: (respones) => {
+				checkUseremailFlag = respones.data;
+	
+				if (checkUseremailFlag) {
+					alert("사용 가능한 이메일 입니다.");
+				} else {
+					alert("이미 사용중인 이메일 입니다.");
+				}
+			},
+			error: (error) => {
+				if (error.status == 400) {
+					alert(JSON.stringify(error.responseJSON.data));
+				} else {
+					console.log("요청실패");
+					console.log(error);
+				}
 			}
-		}
-	});
+		});
+	}else{
+		alert("이메일은 공백일수 없습니다.")
+	}
 }
 
 function validatePassword(password) {
@@ -101,7 +108,7 @@ signUpBtn.onclick = () => {
 	}
 
 
-	if (checkUseridFlag && checkUseremailFlag == true) {
+	if (checkUseridFlag && checkUseremailFlag == true && inputs[2].value != "") {
 		// AJAX 요청
 		$.ajax({
 			async: false,
@@ -112,7 +119,7 @@ signUpBtn.onclick = () => {
 			dataType: "json",
 			success: (response) => {
 				if (response.data) {
-					alert("회원가입 완료.");
+					alert("회원가입 완료이 완료되었습니다.");
 					location.replace("/auth/signin");
 				} else {
 					alert("회원가입 실패");
@@ -127,7 +134,7 @@ signUpBtn.onclick = () => {
 			}
 		});
 	}else {
-		alert("동일한 아이디와, 이메일이 존재합니다.");
+		alert("회원가입 정보를 확인해주세요.");
 	}
 
 }

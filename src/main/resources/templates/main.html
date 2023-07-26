@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+   <script src="https://code.jquery.com/jquery-latest.min.js"></script> 
+  <title>My Awesome Website</title>
+</head>
+
+<body>
+<!-- thymeleaf  -->
+ <header th:replace="~{fragment/header :: header}"></header>
+  <!-- 히어로 섹션 -->
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="display-4">Welcome to My Awesome Website</h1>
+      <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus non finibus tellus.</p>
+      <a href="#" class="btn btn-primary">Learn More</a>
+    </div>
+  </section>
+
+  <!-- 내용 섹션 -->
+  <section class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Section 1</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus non finibus tellus. Proin eget
+          convallis turpis. In hac habitasse platea dictumst.</p>
+      </div>
+      <div class="col-md-6">
+        <h2>Section 2</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus non finibus tellus. Proin eget
+          convallis turpis. In hac habitasse platea dictumst.</p>
+      </div>
+    </div>
+  </section>
+<!-- thymeleaf  -->
+<footer th:replace="~{fragment/footer :: footer}"></footer>
+
+<script src="/static/js/auth/session_check.js"></script>
+</body>
+
+</html>

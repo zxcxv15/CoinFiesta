@@ -4,7 +4,6 @@ let page = 1;
 getBoardData(page);
 
 function getBoardData () {
-		
        $.ajax({
 		async: false,
 		type: "get",
@@ -13,9 +12,10 @@ function getBoardData () {
 		success: (response) => {
 			if(response.data[0] != null) {
 				getBoardList(response.data);
+				console.log(response.data);
 				
 			}else{
-				getBoardList(list);
+				getBoardList(response.data);
 			}
 		},
 		error: (error) => {
@@ -26,25 +26,28 @@ function getBoardData () {
 
 function getBoardList(boardList) {
 	const tbody = document.querySelector("tbody");
-	
+	let count = 1;
 		tbody.innerHTML = "";
 	
 		boardList.forEach(board => {
 			tbody.innerHTML += `
 	 			<tbody>
 	                <tr>
-	                    <td>${board.boardcode}</td>
+	                    <td>${count++}</td>
 	                    <td class= "board-title"><a href="#">${board.title}</a></td>
+	                    <td>${board.username}</td>
 	                    <td>${board.createdate}</td>
 	                </tr>
 	            </tbody>
 			`;			
 		});
+		
 		setBoardClickEvent(boardList);
+		console.log(boardList);
 	}
 	
 
-	
+// 제목 클릭하면 상세 페이지 이동
 function setBoardClickEvent(boardList){
 	const boardTitle = document.querySelectorAll(".board-title");
 	
@@ -58,5 +61,13 @@ function setBoardClickEvent(boardList){
 	}
 }
 
-
-
+// 비회원 작성 막기
+const writeBtn = document.querySelector(".btn-primary");
+	writeBtn.onclick = () =>{
+		if(getPrincipal() != null){
+			location.href = "/board/write";		
+		}else{
+			alert("로그인 후 이용가능");
+			location.href = "/auth/signin";	
+		}
+	} 

@@ -1,5 +1,7 @@
 package com.CoinFiesta.CoinFiesta.web.dto.board;
 
+import com.CoinFiesta.CoinFiesta.domain.board.Board;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,12 +11,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class ReadBoardRespDto {
+public class UpdateBoardRespDto {
 	private int boardcode;
 	private String title;
 	private String content;
-	private String username;
-	private int usercode;
-	private String createdate;
-	private String updatedate;
+	
+	
+		public Board toEntity() {
+			
+			return Board.builder()
+						.board_code(boardcode)
+						.title(title)
+						.content(content)
+						.build();
+						
+		}
 }

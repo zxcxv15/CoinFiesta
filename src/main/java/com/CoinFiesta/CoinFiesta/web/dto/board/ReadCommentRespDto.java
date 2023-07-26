@@ -9,12 +9,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class ReadBoardRespDto {
+public class ReadCommentRespDto {
 	private int boardcode;
-	private String title;
 	private String content;
-	private String username;
 	private int usercode;
 	private String createdate;
-	private String updatedate;
 }

@@ -1,7 +1,5 @@
 package com.CoinFiesta.CoinFiesta.web.dto.board;
 
-import java.time.LocalDateTime;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,5 +12,9 @@ import lombok.NoArgsConstructor;
 public class ReadBoardListRespDto {
 	private int boardcode;
 	private String title;
-	private LocalDateTime createdate;
+	private String content;
+	private String username;
+	private int usercode;
+	private String  createdate;
+	private String  updatedate;
 }

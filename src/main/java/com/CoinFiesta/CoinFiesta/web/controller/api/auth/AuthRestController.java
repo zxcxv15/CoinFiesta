@@ -1,6 +1,7 @@
 package com.CoinFiesta.CoinFiesta.web.controller.api.auth;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.CoinFiesta.CoinFiesta.service.auth.AuthService;
+import com.CoinFiesta.CoinFiesta.service.auth.PrincipalDetails;
 import com.CoinFiesta.CoinFiesta.web.dto.CMRespDto;
 import com.CoinFiesta.CoinFiesta.web.dto.auth.SignupReqDto;
 import com.CoinFiesta.CoinFiesta.web.dto.auth.ValidationReqDto;
@@ -24,6 +26,15 @@ public class AuthRestController {
 	private final AuthService authService;
 	
 	/** 회원가입 관련 소스*/
+	
+	//유저 정보 가져오기
+	@GetMapping("/principal")
+	public ResponseEntity<?> getPrincipal(@AuthenticationPrincipal PrincipalDetails principalDetails){
+		if(principalDetails == null) {
+			return ResponseEntity.badRequest().body(new CMRespDto<>(-1,"principal is null", null));
+		}
+		return ResponseEntity.ok(new CMRespDto<>(1,"success load", principalDetails.getUser()));
+	}
 	
 	//회원가입
 	@PostMapping("/signup")
